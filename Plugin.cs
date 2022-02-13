@@ -34,6 +34,9 @@ namespace DurabilityTweaks
 
         private void Awake()
         {
+            _serverConfigLocked = config("General", "Force Server Config", true, "Force Server Config");
+            _ = ConfigSync.AddLockingConfigEntry(_serverConfigLocked);
+
             torchDurabilityDrain = config("Durability", "TorchDurabilityDrain", 0.033f,
                 "Torch durability drain over time.");
             torchDurabilityLoss = config("Durability", "TorchDurabilityLoss", 1f,

@@ -90,7 +90,7 @@
       <Content Include=".gitignore" />
       <Content Include="ILRepack.targets" />
       <Content Include="Libs\ServerSync.dll">
-        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       </Content>
       <Content Include="LICENSE.txt" />
     </ItemGroup>
