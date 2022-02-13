@@ -17,7 +17,7 @@ namespace DurabilityTweaks
     public class DurabilityTweaksPlugin : BaseUnityPlugin
     {
         internal const string ModName = "DurabilityTweaks";
-        internal const string ModVersion = "1.0.0";
+        internal const string ModVersion = "1.0.1";
         private const string Author = "azumatt";
         private const string ModGUID = Author + "." + ModName;
         private static string ConfigFileName = ModGUID + ".cfg";
