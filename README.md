@@ -2,6 +2,8 @@
 
 ### Made at the request of `Tyson#2862` in the OdinPlus discord.
 
+`If this mod is installed on the server, it will sync the configs.`
+
 This mod provides config settings for each of the following:
 
 **Torches**: affects the durability drain over time caused by holding a torch; another setting affects durability loss when attacking with a torch.
