@@ -110,7 +110,7 @@ namespace DurabilityTweaks
             static void Postfix(ItemDrop __instance)
             {
                 if (!modEnabled.Value || __instance.name == null || __instance.m_itemData?.m_shared == null) return;
-                //Dbgl($"{__instance.name}, type: {Enum.GetName(typeof(ItemDrop.ItemData.ItemType), __instance.m_itemData.m_shared.m_itemType)} drain: {__instance.m_itemData.m_shared.m_durabilityDrain}, use: {__instance.m_itemData.m_shared.m_useDurabilityDrain}");
+                //DurabilityLogger.LogDebug($"{__instance.name}, type: {Enum.GetName(typeof(ItemDrop.ItemData.ItemType), __instance.m_itemData.m_shared.m_itemType)} drain: {__instance.m_itemData.m_shared.m_durabilityDrain}, use: {__instance.m_itemData.m_shared.m_useDurabilityDrain}");
 
                 if (__instance.name.StartsWith("Pickaxe"))
                     __instance.m_itemData.m_shared.m_useDurabilityDrain = pickaxeDurabilityLoss.Value;
@@ -212,44 +212,71 @@ namespace DurabilityTweaks
                     if (___m_helmetItem != null)
                         count++;
 
+                    // if (___m_chestItem != null)
+                    //     ___m_chestItem.m_durability = Mathf.Max(0, __state[0] - amount / count);
+                    // if (___m_legItem != null)
+                    //     ___m_legItem.m_durability = Mathf.Max(0, __state[1] - amount / count);
+                    // if (___m_shoulderItem != null)
+                    //     ___m_shoulderItem.m_durability = Mathf.Max(0, __state[2] - amount / count);
+                    // if (___m_helmetItem != null)
+                    //     ___m_helmetItem.m_durability = Mathf.Max(0, __state[3] - amount / count);
+
                     if (___m_chestItem != null)
-                        ___m_chestItem.m_durability = Mathf.Max(0, __state[0] - amount / count);
+                        ___m_chestItem.m_durability = Mathf.Max(0,
+                            __state[0] - ((__state[0] - ___m_chestItem.m_durability) * armorDurabilityLossMult.Value) /
+                            count);
                     if (___m_legItem != null)
-                        ___m_legItem.m_durability = Mathf.Max(0, __state[1] - amount / count);
+                        ___m_legItem.m_durability = Mathf.Max(0,
+                            __state[1] - ((__state[1] - ___m_chestItem.m_durability) * armorDurabilityLossMult.Value) /
+                            count);
                     if (___m_shoulderItem != null)
-                        ___m_shoulderItem.m_durability = Mathf.Max(0, __state[2] - amount / count);
+                        ___m_shoulderItem.m_durability = Mathf.Max(0,
+                            __state[2] - ((__state[2] - ___m_chestItem.m_durability) * armorDurabilityLossMult.Value) /
+                            count);
                     if (___m_helmetItem != null)
-                        ___m_helmetItem.m_durability = Mathf.Max(0, __state[3] - amount / count);
+                        ___m_helmetItem.m_durability = Mathf.Max(0,
+                            __state[3] - ((__state[3] - ___m_chestItem.m_durability) * armorDurabilityLossMult.Value) /
+                            count);
                 }
                 else
                 {
                     if (___m_chestItem != null && __state[0] > ___m_chestItem.m_durability)
                     {
-                        //Dbgl($"chest old {__state[0]} new {___m_chestItem.m_durability} final {__state[0] - amount}");
-                        ___m_chestItem.m_durability = Mathf.Max(0, __state[0] - amount);
+                        //DurabilityLogger.LogDebug($"chest old {__state[0]} new {___m_chestItem.m_durability} final {__state[0] - amount}");
+                        //___m_chestItem.m_durability = Mathf.Max(0, __state[0] - amount);
+                        ___m_chestItem.m_durability = Mathf.Max(0,
+                            __state[0] - (__state[0] - ___m_chestItem.m_durability) * armorDurabilityLossMult.Value);
                     }
 
                     if (___m_legItem != null && __state[1] > ___m_legItem.m_durability)
                     {
-                        //Dbgl($"leg old {__state[1]} new {___m_legItem.m_durability} final {__state[1] - amount}");
-                        ___m_legItem.m_durability = Mathf.Max(0, __state[1] - amount);
+                        //DurabilityLogger.LogDebug($"leg old {__state[1]} new {___m_legItem.m_durability} final {__state[1] - amount}");
+                        //___m_legItem.m_durability = Mathf.Max(0, __state[1] - amount);
+                        ___m_legItem.m_durability = Mathf.Max(0,
+                            __state[1] - (__state[1] - ___m_legItem.m_durability) * armorDurabilityLossMult.Value);
                     }
 
                     if (___m_shoulderItem != null && __state[2] > ___m_shoulderItem.m_durability)
                     {
-                        //Dbgl($"shoulder old {__state[2]} new {___m_shoulderItem.m_durability} final {__state[2] - amount}");
-                        ___m_shoulderItem.m_durability = Mathf.Max(0, __state[2] - amount);
+                        //DurabilityLogger.LogDebug($"shoulder old {__state[2]} new {___m_shoulderItem.m_durability} final {__state[2] - amount}");
+                        //___m_shoulderItem.m_durability = Mathf.Max(0, __state[2] - amount);
+                        ___m_shoulderItem.m_durability = __state[2] - (__state[2] - ___m_shoulderItem.m_durability) *
+                            armorDurabilityLossMult.Value;
                     }
 
                     if (___m_helmetItem != null && __state[3] > ___m_helmetItem.m_durability)
                     {
-                        //Dbgl($"helmet old {__state[3]} new {___m_helmetItem.m_durability} final {__state[3] - amount}");
+                        //DurabilityLogger.LogDebug($"helmet old {__state[3]} new {___m_helmetItem.m_durability} final {__state[3] - amount}");
 
-                        ___m_helmetItem.m_durability = Mathf.Max(0, __state[3] - amount);
+                        // ___m_helmetItem.m_durability = Mathf.Max(0, __state[3] - amount);
+                        ___m_helmetItem.m_durability = __state[3] -
+                                                       (__state[3] - ___m_helmetItem.m_durability) *
+                                                       armorDurabilityLossMult.Value;
                     }
                 }
             }
         }
+
 
         [HarmonyPatch(typeof(Humanoid), nameof(Humanoid.BlockAttack))]
         static class DurabiityTweaksBlockAttackPatch
