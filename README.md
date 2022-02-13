@@ -66,5 +66,7 @@ For Questions or Comments, find me in the Odin Plus Team Discord:
 
 ***
 > # Update Information (Latest listed first)
+> ### v1.0.1
+> - Fix bug with armor durability not working
 > ### v1.0.0
 > - Initial Release
