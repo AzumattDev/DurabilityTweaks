@@ -1,4 +1,4 @@
-﻿Allows you to tweak the durability of torches, tools, weapons, bows, shields, and armour.
+Allows you to tweak the durability of torches, tools, weapons, bows, shields, and armour.
 
 ### Made at the request of `Tyson#2862` in the OdinPlus discord.
 
@@ -66,6 +66,8 @@ For Questions or Comments, find me in the Odin Plus Team Discord:
 
 ***
 > # Update Information (Latest listed first)
+> ### v1.0.2
+> - Update ServerSync internally
 > ### v1.0.1
 > - Fix bug with armor durability not working
 > ### v1.0.0
