@@ -126,6 +126,7 @@ namespace DurabilityTweaks
                             break;
                         case ItemDrop.ItemData.ItemType.OneHandedWeapon:
                         case ItemDrop.ItemData.ItemType.TwoHandedWeapon:
+                        case ItemDrop.ItemData.ItemType.TwoHandedWeaponLeft:
                             __instance.m_itemData.m_shared.m_useDurabilityDrain = weaponDurabilityLoss.Value;
                             break;
                         case ItemDrop.ItemData.ItemType.Bow:
@@ -168,6 +169,10 @@ namespace DurabilityTweaks
                         case ItemDrop.ItemData.ItemType.Utility:
                             break;
                         case ItemDrop.ItemData.ItemType.Attach_Atgeir:
+                            break;
+                        case ItemDrop.ItemData.ItemType.Fish:
+                            break;
+                        case ItemDrop.ItemData.ItemType.AmmoNonEquipable:
                             break;
                         default:
                             throw new ArgumentOutOfRangeException();
