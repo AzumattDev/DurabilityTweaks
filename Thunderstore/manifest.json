@@ -1,0 +1,9 @@
+{
+    "name": "Durability_Tweaks",
+    "version_number": "1.0.3",
+    "website_url": "https://discord.gg/KKHujtRGvB",
+    "description": "Allows you to tweak the durability of torches, tools, weapons, bows, shields, and armour. Made at the request of `Tyson#2862` in the OdinPlus discord.",
+    "dependencies": [
+        "denikson-BepInExPack_Valheim-5.4.1901"
+    ]
+}

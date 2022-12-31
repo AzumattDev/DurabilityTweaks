@@ -94,6 +94,9 @@
       </Content>
       <Content Include="LICENSE.txt" />
       <Content Include="README.md" />
+      <Content Include="Thunderstore\icon.png" />
+      <Content Include="Thunderstore\manifest.json" />
+      <Content Include="Thunderstore\README.md" />
     </ItemGroup>
     <ItemGroup>
       <None Include="packages.config" />
@@ -113,5 +116,33 @@
     <Target Name="AfterBuild">
     </Target>
     -->
+    <Target Name="GetAssemblyVersion" AfterTargets="ILRepacker">
+        <GetAssemblyIdentity AssemblyFiles="$(TargetPath)">
+            <Output TaskParameter="Assemblies" ItemName="Targets" />
+        </GetAssemblyIdentity>
+        <ItemGroup>
+            <AssemblyVersions Include="@(Targets->'%(Version)')" />
+        </ItemGroup>
+        <PropertyGroup>
+            <AssemblyVersion>%(AssemblyVersions.Identity)</AssemblyVersion>
+            <Major>$(AssemblyVersion.Split('.')[0])</Major>
+            <Minor>$(AssemblyVersion.Split('.')[1])</Minor>
+            <Patch>$(AssemblyVersion.Split('.')[2])</Patch>
+            <PackageName>$(AssemblyName)_v$(Major).$(Minor).$(Patch)</PackageName>
+            <PackageDir>Thunderstore\$(PackageName)</PackageDir>
+        </PropertyGroup>
+    </Target>
+    <Target Name="Copy" AfterTargets="GetAssemblyVersion">
+        <Exec Command="copy /Y &quot;README.md&quot; &quot;Thunderstore\README.md&quot;" />
+    </Target>
+    <Target Name="MakeThunderstorePackage" AfterTargets="Copy">
+        <ItemGroup>
+            <PackageFiles Include="$(TargetDir)$(AssemblyName).dll; Thunderstore\README.md; Thunderstore\manifest.json; Thunderstore\icon.png;" />
+        </ItemGroup>
+        <MakeDir Directories="$(PackageDir)" />
+        <Copy SourceFiles="@(PackageFiles)" DestinationFolder="$(PackageDir)" />
+        <ZipDirectory SourceDirectory="$(PackageDir)" DestinationFile="Thunderstore\$(PackageName).zip" Overwrite="true" />
+        <RemoveDir Directories="$(PackageDir)" />
+    </Target>
 
 </Project>
