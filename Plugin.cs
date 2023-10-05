@@ -17,7 +17,7 @@ namespace DurabilityTweaks
     public class DurabilityTweaksPlugin : BaseUnityPlugin
     {
         internal const string ModName = "DurabilityTweaks";
-        internal const string ModVersion = "1.0.3";
+        internal const string ModVersion = "1.0.4";
         private const string Author = "Azumatt";
         private const string ModGUID = Author + "." + ModName;
         private static string ConfigFileName = ModGUID + ".cfg";
@@ -160,7 +160,7 @@ namespace DurabilityTweaks
                             break;
                         case ItemDrop.ItemData.ItemType.Hands:
                             break;
-                        case ItemDrop.ItemData.ItemType.Trophie:
+                        case ItemDrop.ItemData.ItemType.Trophy:
                             break;
                         case ItemDrop.ItemData.ItemType.Misc:
                             break;

@@ -66,6 +66,8 @@ For Questions or Comments, find me in the Odin Plus Team Discord:
 
 ***
 > # Update Information (Latest listed first)
+> ### v1.0.4
+> - Update for Valheim 0.217.22
 > ### v1.0.3
 > - Fixed issues with picking up items in Mistlands
 > ### v1.0.2
