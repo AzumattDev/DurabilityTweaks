@@ -66,6 +66,8 @@ For Questions or Comments, find me in the Odin Plus Team Discord:
 
 ***
 > # Update Information (Latest listed first)
+> ### v1.0.5
+> - Bug fix when using BeastTribes
 > ### v1.0.4
 > - Update for Valheim 0.217.22
 > ### v1.0.3

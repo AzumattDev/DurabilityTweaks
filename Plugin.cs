@@ -17,7 +17,7 @@ namespace DurabilityTweaks
     public class DurabilityTweaksPlugin : BaseUnityPlugin
     {
         internal const string ModName = "DurabilityTweaks";
-        internal const string ModVersion = "1.0.4";
+        internal const string ModVersion = "1.0.5";
         private const string Author = "Azumatt";
         private const string ModGUID = Author + "." + ModName;
         private static string ConfigFileName = ModGUID + ".cfg";
@@ -26,11 +26,9 @@ namespace DurabilityTweaks
 
         private readonly Harmony _harmony = new(ModGUID);
 
-        public static readonly ManualLogSource DurabilityLogger =
-            BepInEx.Logging.Logger.CreateLogSource(ModName);
+        public static readonly ManualLogSource DurabilityLogger = BepInEx.Logging.Logger.CreateLogSource(ModName);
 
-        private static readonly ConfigSync ConfigSync = new(ModGUID)
-            { DisplayName = ModName, CurrentVersion = ModVersion, MinimumRequiredVersion = ModVersion };
+        private static readonly ConfigSync ConfigSync = new(ModGUID) { DisplayName = ModName, CurrentVersion = ModVersion, MinimumRequiredVersion = ModVersion };
 
         private void Awake()
         {
@@ -140,42 +138,6 @@ namespace DurabilityTweaks
                             else
                                 __instance.m_itemData.m_shared.m_useDurabilityDrain = toolDurabilityLoss.Value;
                             break;
-                        case ItemDrop.ItemData.ItemType.None:
-                            break;
-                        case ItemDrop.ItemData.ItemType.Material:
-                            break;
-                        case ItemDrop.ItemData.ItemType.Consumable:
-                            break;
-                        case ItemDrop.ItemData.ItemType.Shield:
-                            break;
-                        case ItemDrop.ItemData.ItemType.Helmet:
-                            break;
-                        case ItemDrop.ItemData.ItemType.Chest:
-                            break;
-                        case ItemDrop.ItemData.ItemType.Ammo:
-                            break;
-                        case ItemDrop.ItemData.ItemType.Customization:
-                            break;
-                        case ItemDrop.ItemData.ItemType.Legs:
-                            break;
-                        case ItemDrop.ItemData.ItemType.Hands:
-                            break;
-                        case ItemDrop.ItemData.ItemType.Trophy:
-                            break;
-                        case ItemDrop.ItemData.ItemType.Misc:
-                            break;
-                        case ItemDrop.ItemData.ItemType.Shoulder:
-                            break;
-                        case ItemDrop.ItemData.ItemType.Utility:
-                            break;
-                        case ItemDrop.ItemData.ItemType.Attach_Atgeir:
-                            break;
-                        case ItemDrop.ItemData.ItemType.Fish:
-                            break;
-                        case ItemDrop.ItemData.ItemType.AmmoNonEquipable:
-                            break;
-                        default:
-                            throw new ArgumentOutOfRangeException();
                     }
                 }
             }
